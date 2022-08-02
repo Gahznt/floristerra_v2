@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  www:
+      build: .
+      restart: always
+      ports:
+          - '8000:80'
+      volumes:
+        - ./v2:/var/www/html
+      networks:
+        - default
+  db:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: flori194_floristerra
+      MYSQL_USER: flori194_root
+      MYSQL_PASSWORD: dU52@c@pXCJnbgr
+      MYSQL_ROOT_PASSWORD: dU52@c@pXCJnbgr2Bt
+    volumes: 
+      - db_data:/var/lib/mysql
+    networks:
+      - default
+volumes:
+  db_data:
