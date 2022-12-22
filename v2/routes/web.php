@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\contas\pagamentosController;
 use App\Http\Controllers\contas\recebimentosController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,18 +19,19 @@ use App\Http\Controllers\contas\recebimentosController;
 Route::get('/', function () {
     return view('home');
 });
-
-Route::get('/pagina-inicial', function(){
-    return view('painel.dashboard');
-})->name('dashboard');
-
 Route::get('/login', [loginController::class, 'index'])->name('login');
 Route::post('/loginpost', [loginController::class, 'authenticate'])->name('loginpost');
 
-Route::get('/pagamentos', [pagamentosController:: class, 'index'])->name('pagamentos');
-Route::get('/recebimentos', [recebimentosController:: class, 'index'])->name('recebimentos');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pagina-inicial', function(){
+        return view('painel.dashboard');
+    })->name('dashboard');
+
+    Route::get('/pagamentos', [pagamentosController:: class, 'index'])->name('pagamentos');
+    Route::get('/recebimentos', [recebimentosController:: class, 'index'])->name('recebimentos');
 
 
-Route::get('pdf', function(){
-    return view('diarios.pdf');
+    Route::get('pdf', function(){
+        return view('diarios.pdf');
+    });
 });

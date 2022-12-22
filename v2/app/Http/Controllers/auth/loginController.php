@@ -24,6 +24,7 @@ class loginController extends Controller
         if(Auth::attempt($data)){
             return redirect()->route('dashboard');
         }else{
+            toastr()->error('Usuário ou senha incorretos', 'Erro');
             return redirect()->route('login');
         }
     }

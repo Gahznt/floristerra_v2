@@ -11,7 +11,7 @@ Floristerra - Página Inicial
                 <div class="card-block-small">
                     <i class="ti-face-sad bg-c-pink card1-icon"></i>
                     <span class="text-c-pink f-w-600">Em atraso</span>
-                    <h4>$23,589</h4>
+                    <h4>189</h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
                             <i class="text-c-pink f-16 icofont icofont-calendar m-r-10"></i>Contas atrasadas
@@ -25,7 +25,7 @@ Floristerra - Página Inicial
                 <div class="card-block-small">
                     <i class="ti-time bg-c-yellow card1-icon"></i>
                     <span class="text-c-yellow f-w-600">Vence Hoje</span>
-                    <h4>+562</h4>
+                    <h4>35</h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
                             <i class="text-c-yellow f-16 icofont icofont-calendar m-r-10"></i>Contas que vencem hoje!
@@ -39,7 +39,7 @@ Floristerra - Página Inicial
                 <div class="card-block-small">
                     <i class="ti-time bg-c-blue card1-icon"></i>
                     <span class="text-c-blue f-w-600">No Prazo</span>
-                    <h4>49/50GB</h4>
+                    <h4>51</h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
                             <i class="text-c-blue f-16 icofont icofont-calendar m-r-10"></i>Contas no prazo

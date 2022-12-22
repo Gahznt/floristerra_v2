@@ -106,7 +106,7 @@
                                 <a href="#!">
                                     <img src="{{ asset('assets/template/images/avatar-4.jpg') }}" class="img-radius"
                                         alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span>{{Auth::user()->name}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -139,8 +139,8 @@
                                         src="{{ asset('assets/template/images/avatar-4.jpg') }}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span>John Doe</span>
-                                        <span id="more-details">UX Designer<i class="ti-angle-down"></i></span>
+                                        <span>{{Auth::user()->name}}</span>
+                                        <span id="more-details"><i class="ti-angle-down"></i></span>
                                     </div>
                                 </div>
 
@@ -240,13 +240,6 @@
             </div>
         </div>
     </div>
-    <div class="fixed-button">
-        <a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank"
-            class="btn btn-md btn-primary">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
-        </a>
-    </div>
-
     <!-- Required Jquery -->
     <script type="text/javascript" src="{{ asset('assets/template/js/jquery/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/template/js/jquery-ui/jquery-ui.min.js') }}"></script>
