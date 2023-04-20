@@ -18,14 +18,14 @@ class loginController extends Controller
         $validator = $this->validator($data);
 
         if($validator->fails()){
-            return redirect()->route('login')->withErrors($validator)->withInput();
+            return back()->with('error', $validator)->withInput();
+            // return redirect()->route('login')->withErrors($validator)
         }
 
         if(Auth::attempt($data)){
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with('success', 'Seja bem-vindo de volta!');
         }else{
-            toastr()->error('Usuário ou senha incorretos', 'Erro');
-            return redirect()->route('login');
+            return back()->with('error', 'Usuário ou senha incorretos');
         }
     }
 

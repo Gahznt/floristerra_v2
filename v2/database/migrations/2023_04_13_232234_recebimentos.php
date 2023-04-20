@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contas', function (Blueprint $table) {
+        Schema::create('recebimentos', function (Blueprint $table) {
             $table->id();
-            $table->string('nomeconta');
-            $table->date('vencimento');
+            $table->string('pagador');
             $table->float('valor');
-            $table->string('boleto')->nullable();
-            $table->tinyInteger('paga')->default(0);
-            $table->longText('observacao')->nullable();
+            $table->longText('desc')->nullable();
+            $table->tinyInteger('status_pagamento')->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contas');
+        Schema::dropIfExists('recebimentos');
     }
 };

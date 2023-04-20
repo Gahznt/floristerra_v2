@@ -17,6 +17,8 @@ RUN docker-php-ext-install zip
 # Ativa rewrite engine
 RUN a2enmod rewrite
 
+RUN chmod -R ugo+rw storage
+
 # Concede permissão para o laravel.log e gera a key
 # RUN mkdir -p /var/www/storage/logs && touch /var/www/storage/logs/laravel.log && chmod 777 /var/www/storage/logs/laravel.log && chmod -R ugo+rw storage && php artisan key:generate
 # RUN chgrp -R www-data storage bootstrap/cache && chmod -R ug+rwx storage bootstrap/cache

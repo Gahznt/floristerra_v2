@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class contasModel extends Model
+class recebimentosModel extends Model
 {
     use HasFactory;
-    protected $table = 'contas';
+    protected $table = 'recebimentos';
 
     protected $fillable = [
-        'nomeconta',
-        'vencimento',
+        'pagador',
         'valor',
-        'boleto',
-        'paga',
-        'observacao'
+        'desc',
+        'status_pagamento',
     ];
 }

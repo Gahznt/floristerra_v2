@@ -7,10 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="CodedThemes">
-    <meta name="keywords"
-        content="flat ui, admin  Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
-    <meta name="author" content="CodedThemes">
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('assets/template/images/favicon.ico" type="image/x-icon') }}">
     <!-- Google font-->
@@ -80,8 +76,7 @@
                             <i class="ti-search"></i>
                         </a>
                         <a href="index.html">
-                            <img class="img-fluid" src="{{ asset('assets/template/images/logo.png') }}"
-                                alt="Theme-Logo" />
+                            <img class="img-fluid" src="{{ asset('assets/template/images/logo.png') }}" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>
@@ -104,8 +99,7 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!">
-                                    <img src="{{ asset('assets/template/images/avatar-4.jpg') }}" class="img-radius"
-                                        alt="User-Profile-Image">
+                                    <img src="{{ asset('assets/images/escavadeira.png') }}" class="img-radius" alt="User-Profile-Image">
                                     <span>{{Auth::user()->name}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -116,9 +110,10 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="auth-normal-sign-in.html">
-                                            <i class="ti-layout-sidebar-left"></i> Sair
-                                        </a>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <a><button type="submit" style="all: initial"><i class="ti-layout-sidebar-left"></i> Sair</button></a>
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
@@ -135,9 +130,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-40 img-radius"
-                                        src="{{ asset('assets/template/images/avatar-4.jpg') }}"
-                                        alt="User-Profile-Image">
+                                    <img class="img-40 img-radius" src="{{ asset('assets/images/escavadeira.png') }}" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span>{{Auth::user()->name}}</span>
                                         <span id="more-details"><i class="ti-angle-down"></i></span>
@@ -169,16 +162,14 @@
                                 <li>
                                     <a href="{{route('pagamentos')}}">
                                         <span class="pcoded-micon"><i class="ti-wallet"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext"
-                                            data-i18n="nav.form-components.main">Pagamentos</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pagamentos</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('recebimentos')}}">
                                         <span class="pcoded-micon"><i class="ti-wallet"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext"
-                                            data-i18n="nav.form-components.main">Recebimentos</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Recebimentos</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -196,16 +187,14 @@
                                         <li class=" ">
                                             <a href="#">
                                                 <span class="pcoded-micon"><i class="-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.alert">Emitir Diário</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Emitir Diário</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class=" ">
                                             <a href="#">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Consultar
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Consultar
                                                     Diários</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
@@ -218,8 +207,7 @@
                                 <li>
                                     <a href="#">
                                         <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext"
-                                            data-i18n="nav.form-components.main">Usuários</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Usuários</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>

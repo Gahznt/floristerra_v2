@@ -5,13 +5,12 @@ Floristerra - Página Inicial
 @endsection
 @section('content')
     <div class="row">
-        <!-- card1 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
                     <i class="ti-face-sad bg-c-pink card1-icon"></i>
                     <span class="text-c-pink f-w-600">Em atraso</span>
-                    <h4>189</h4>
+                    <h4>{{$atrasadas}}</h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
                             <i class="text-c-pink f-16 icofont icofont-calendar m-r-10"></i>Contas atrasadas
@@ -25,7 +24,7 @@ Floristerra - Página Inicial
                 <div class="card-block-small">
                     <i class="ti-time bg-c-yellow card1-icon"></i>
                     <span class="text-c-yellow f-w-600">Vence Hoje</span>
-                    <h4>35</h4>
+                    <h4>{{$venchoje}}</h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
                             <i class="text-c-yellow f-16 icofont icofont-calendar m-r-10"></i>Contas que vencem hoje!
@@ -39,7 +38,7 @@ Floristerra - Página Inicial
                 <div class="card-block-small">
                     <i class="ti-time bg-c-blue card1-icon"></i>
                     <span class="text-c-blue f-w-600">No Prazo</span>
-                    <h4>51</h4>
+                    <h4>{{$noprazo}}</h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
                             <i class="text-c-blue f-16 icofont icofont-calendar m-r-10"></i>Contas no prazo
@@ -53,7 +52,7 @@ Floristerra - Página Inicial
                 <div class="card-block-small">
                     <i class="ti-face-smile bg-c-green card1-icon"></i>
                     <span class="text-c-green f-w-600">Pago</span>
-                    <h4>45</h4>
+                    <h4>{{$pagas}}</h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
                             <i class="text-c-green f-16 icofont icofont-calendar m-r-10"></i>Contas pagas
