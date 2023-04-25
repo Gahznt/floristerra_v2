@@ -5,6 +5,7 @@ namespace App\Http\Controllers\contas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\contasModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -104,6 +105,16 @@ class pagamentosController extends Controller
             return redirect()->route('recebimentos')->with('error', 'Não há boleto anexado para esta conta.');
         }
         return response()->download($path);
+    }
+
+    public function accountFilter(Request $request){
+        if($request->conta){
+            $conta = DB::table('contas')
+            ->where('nomeconta', 'like', '%'.$request->conta.'%')
+            ->when($request->vencimento, function($query, $vencimento) {
+                return $query->where('vencimento', $vencimento);
+            })->get();
+        }
     }
 
 }

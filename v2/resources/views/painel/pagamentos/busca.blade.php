@@ -63,24 +63,8 @@ Floristerra - Pagamentos
             </div>
         </div>
     </div>
-    <div class="col-md-5">
-        <label class="col-form-label">Filtrar conta</label>
-        <form>
-            @csrf
-            <div class="input-group">
-                <input type="text" name="conta" class="form-control mr-1" placeholder="nome da conta">
-            </div>
-    </div>
-    <div class="col-md-5">
-        <div class="input-group">
-            <input type="date" name="data-inicio" class="form-control">
-            <input type="date" name="data-fim" class="form-control">
-            <div class="input-group-append">
-                <button class="btn btn-grd-primary btn-sm ml-1">Buscar</button>
-            </div>
-        </div>
-    </div>
-    </form>
+
+    <a class="btn btn-grd-primary btn-sm ml-1">Buscar</a>
 
     <div class="card-header">
         <h5>Lista de pagamentos</h5>
