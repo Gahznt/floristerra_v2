@@ -64,7 +64,9 @@ Floristerra - Pagamentos
         </div>
     </div>
 
-    <a class="btn btn-grd-primary btn-sm ml-1">Buscar</a>
+    <div class="input-group-append">
+        <a class="btn btn-grd-primary btn-sm ml-1 ml-4" href="{{route('pagamentos')}}">Voltar</a>
+    </div>
 
     <div class="card-header">
         <h5>Lista de pagamentos</h5>
@@ -94,10 +96,10 @@ Floristerra - Pagamentos
                 <tbody>
                     @foreach($contas as $conta)
                     <tr>
-                        <th scope="row">{{$conta['id']}}</th>
-                        <td>{{$conta['nomeconta']}}</td>
-                        <td>{{date('d/m/Y', strtotime($conta['vencimento']))}}</td>
-                        <td>R$ {{number_format($conta['valor'], 2, ',', '.')}}</td>
+                        <th scope="row">{{$conta->id}}</th>
+                        <td>{{$conta->nomeconta}}</td>
+                        <td>{{date('d/m/Y', strtotime($conta->vencimento))}}</td>
+                        <td>R$ {{number_format($conta->valor, 2, ',', '.')}}</td>
                         @if ($conta->vencimento < date('Y-m-d') AND $conta->paga == 0)
                             <td class="text-danger"><b>Em atraso</b></td>
                             @elseif ($conta->vencimento > date('Y-m-d') AND $conta->paga == 1)

@@ -65,22 +65,17 @@ Floristerra - Pagamentos
     </div>
     <div class="col-md-5">
         <label class="col-form-label">Filtrar conta</label>
-        <form>
+        <form action="{{route('accountFilter')}}" method="post">
             @csrf
             <div class="input-group">
                 <input type="text" name="conta" class="form-control mr-1" placeholder="nome da conta">
+                <div class="input-group-append">
+                    <button class="btn btn-grd-primary btn-sm ml-1">Buscar</button>
+                </div>
             </div>
+        </form>
     </div>
-    <div class="col-md-5">
-        <div class="input-group">
-            <input type="date" name="data-inicio" class="form-control">
-            <input type="date" name="data-fim" class="form-control">
-            <div class="input-group-append">
-                <button class="btn btn-grd-primary btn-sm ml-1">Buscar</button>
-            </div>
-        </div>
-    </div>
-    </form>
+
 
     <div class="card-header">
         <h5>Lista de pagamentos</h5>

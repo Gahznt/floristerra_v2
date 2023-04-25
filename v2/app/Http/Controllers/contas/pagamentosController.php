@@ -109,11 +109,12 @@ class pagamentosController extends Controller
 
     public function accountFilter(Request $request){
         if($request->conta){
-            $conta = DB::table('contas')
-            ->where('nomeconta', 'like', '%'.$request->conta.'%')
-            ->when($request->vencimento, function($query, $vencimento) {
-                return $query->where('vencimento', $vencimento);
-            })->get();
+            $contas = DB::table('contas')
+            ->where('nomeconta', 'like', '%'.$request->conta.'%')->paginate(20);
+
+            return view('painel.pagamentos.busca', [
+                'contas' => $contas,
+            ]);
         }
     }
 

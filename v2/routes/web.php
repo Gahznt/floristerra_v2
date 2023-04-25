@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pagamentosUpdate', [pagamentosController::class, 'update'])->name('pagamentos_update');
     Route::get('/remover_pagamento/{id}', [pagamentosController::class, 'delete'])->name('remover_pagamento');
     Route::get('/pagamentos/{id}', [pagamentosController::class, 'search'])->name('search');
+    Route::post('/filterPagamentos', [pagamentosController::class, 'accountFilter'])->name('accountFilter');
 
     Route::get('/recebimentos', [recebimentosController::class, 'index'])->name('recebimentos');
     Route::post('/recebimentos', [recebimentosController::class, 'store'])->name('recebimentos_store');
