@@ -174,7 +174,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <div class="pcoded-navigatio-lavel">Diário de Obras</div>
+                            <!-- <div class="pcoded-navigatio-lavel">Diário de Obras</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="#">
@@ -201,7 +201,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                            </ul>
+                            </ul> -->
                             <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Configurações</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>
