@@ -29,13 +29,13 @@
             </div>
             <div class="col col-4 border border">
                 <div class="row border">
-                    <label align="center">aaa<label>
+                    <label align="center"># 12312<label>
                 </div>
                 <div class="row border" align="center">
-                    <label align="center">aaa<label>
+                    <label align="center">-<label>
                 </div>
                 <div class="row border" align="center">
-                    <label align="center">aaa<label>
+                    <label align="center">20 dias<label>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <b> Prazo decorrido </b>
             </div>
             <div class="col col-4 border" align="center">
-                <label align="center">aaa<label>
+                <label align="center">10 dias<label>
             </div>
         </div>
         <div class="row">
@@ -58,13 +58,13 @@
                 ACA
             </div>
             <div class="col col-2 border">
-                2 of 3
+                <!--2 of 3 -->
             </div>
             <div class="col col-2 border" style="background-color: rgb(163, 163, 163)" align="center">
                 <b> Prazo a vencer </b>
             </div>
             <div class="col col-4 border" align="center">
-                <label align="center">aaa<label>
+                <label align="center">10 dias<label>
             </div>
         </div>
         <div class="row">
@@ -75,13 +75,13 @@
                 Rodovia Fernão Dias
             </div>
             <div class="col col-2 border">
-                2 of 3
+                <!--2 of 3 -->
             </div>
             <div class="col col-2 border" style="background-color: rgb(163, 163, 163)" align="center">
                 <b> Data do Relatório </b>
             </div>
             <div class="col col-4 border" align="center">
-                <label align="center">aaa<label>
+                <label align="center">25/04/2023<label>
             </div>
         </div>
         <div class="row">
@@ -92,48 +92,117 @@
                 Antonio Carlos
             </div>
             <div class="col col-2 border">
-                2 of 3
+                <!--2 of 3 -->
             </div>
             <div class="col col-2 border" style="background-color: rgb(163, 163, 163)" align="center">
                 <b> Dia da Semana </b>
             </div>
             <div class="col col-4 border" align="center">
-                <label align="center">aaa<label>
+                <label align="center">Segunda-Feira<label>
             </div>
         </div>
 
         {{-- SEGUNDA PARTE --}}
-        <div class="row mt-3">
-            <div class="col col-4 border" style="background-color: rgb(163, 163, 163)" align="center">
-                <b>Condição climática</b>
+        <div>
+            <div class="row mt-3">
+                <div class="col col-4 border" style="background-color: rgb(163, 163, 163)" align="center">
+                    <b>Condição climática</b>
+                </div>
+                <div class="col col-4 border" style="background-color: rgb(163, 163, 163)" align="center">
+                    <b>Tempo</b>
+                </div>
+                <div class="col col-4 border" style="background-color: rgb(163, 163, 163)" align="center">
+                    <b>Condição</b>
+                </div>
             </div>
-            <div class="col col-4 border" style="background-color: rgb(163, 163, 163)" align="center">
-                <b>Tempo</b>
+            <div class="row">
+                <div class="col col-4 border" style="background-color: rgb(195, 195, 195)" align="center">
+                    Manhã
+                </div>
+                <div class="col col-4 border" align="center">
+                    Claro
+                </div>
+                <div class="col col-4 border" align="center">
+                    Praticável
+                </div>
             </div>
-            <div class="col col-4 border" style="background-color: rgb(163, 163, 163)" align="center">
-                <b>Condição</b>
+            <div class="row">
+                <div class="col col-4 border" style="background-color: rgb(195, 195, 195)" align="center">
+                    Tarde
+                </div>
+                <div class="col col-4 border" align="center">
+                    Claro
+                </div>
+                <div class="col col-4 border" align="center">
+                    Praticável
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col col-4 border" style="background-color: rgb(195, 195, 195)" align="center">
-                Manhã
+
+        <div>
+            <div class="row mt-3">
+                <div class="col col-12 border" style="background-color: rgb(163, 163, 163)" align="center">
+                    <b>Mão de obra</b>
+                </div>
             </div>
-            <div class="col col-4 border" align="center">
-                Claro
-            </div>
-            <div class="col col-4 border" align="center">
-                Praticável
+            <div class="row">
+                <div class="col col-12 border" align="center">
+                    Fulano 1
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col col-4 border" style="background-color: rgb(195, 195, 195)" align="center">
-                Tarde
+
+        <div>
+            <div class="row mt-3">
+                <div class="col col-12 border" style="background-color: rgb(163, 163, 163)" align="center">
+                    <b>Equipamento</b>
+                </div>
             </div>
-            <div class="col col-4 border" align="center">
-                Claro
+            <div class="row">
+                <div class="col col-12 border" align="center">
+                    Máquina 1
+                </div>
             </div>
-            <div class="col col-4 border" align="center">
-                Praticável
+        </div>
+
+        <div>
+            <div class="row mt-3">
+                <div class="col col-12 border" style="background-color: rgb(163, 163, 163)" align="center">
+                    <b>Detalhe das atividades</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-12 border py-5">
+                    registro das atividades aqui
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="row mt-3">
+                <div class="col col-12 border" style="background-color: rgb(163, 163, 163)" align="center">
+                    <b>Galeria de fotos</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 border d-flex justify-content-center">
+                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 border d-flex justify-content-center">
+                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 border d-flex justify-content-center">
+                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 border d-flex justify-content-center">
+                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
+                </div>
             </div>
         </div>
     </div>

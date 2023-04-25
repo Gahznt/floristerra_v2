@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\contas\pagamentosController;
 use App\Http\Controllers\contas\recebimentosController;
+use App\Http\Controllers\diarioController;
 use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -43,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/download/{filename}', [pagamentosController::class, 'downloadFile'])->name('download');
 
+    Route::get('/diario', [diarioController::class, 'index'])->name('diario');
     Route::get('pdf', function(){
         return view('diarios.pdf');
     });

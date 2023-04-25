@@ -185,7 +185,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="#">
+                                            <a href="{{route('diario')}}">
                                                 <span class="pcoded-micon"><i class="-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Emitir Diário</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -202,7 +202,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Configurações</div>
+                            <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Configurações</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>
                                     <a href="#">
@@ -211,7 +211,7 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </nav>
                     <div class="pcoded-content">

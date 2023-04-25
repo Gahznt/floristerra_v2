@@ -76,9 +76,9 @@ class pagamentosController extends Controller
         $conta = contasModel::find($id);
         if($conta){
             $conta->delete();
-            return back()->with('warning', 'Conta deletada com sucesso!');
+            return redirect()->route('pagamentos')->with('warning', 'Conta deletada com sucesso!');
         }else{
-            return back()->with('error', 'Conta não encontrada!');
+            return redirect()->route('pagamentos')->with('error', 'Conta não encontrada!');
         }
     }
 
@@ -102,7 +102,7 @@ class pagamentosController extends Controller
     public function downloadFile($filename){
         $path = storage_path('app/public/uploads/' . $filename);
         if (!File::exists($path)) {
-            return back()->with('error', 'Não há boleto anexado para esta conta.');
+            return redirect()->route('pagamentos')->with('error', 'Não há boleto anexado para esta conta.');
         }
         return response()->download($path);
     }
