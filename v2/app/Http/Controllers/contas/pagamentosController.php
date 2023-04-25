@@ -102,7 +102,7 @@ class pagamentosController extends Controller
     public function downloadFile($filename){
         $path = storage_path('app/public/uploads/' . $filename);
         if (!File::exists($path)) {
-            return redirect()->route('recebimentos')->with('error', 'Não há boleto anexado para esta conta.');
+            return back()->with('error', 'Não há boleto anexado para esta conta.');
         }
         return response()->download($path);
     }
