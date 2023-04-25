@@ -69,9 +69,8 @@ Floristerra - Página Inicial
                 <div class="page-header-title">
                     <i class="icofont icofont icofont icofont-file-document bg-c-green"></i>
                     <div class="d-inline">
-                        <h4>Sample Page</h4>
-                        <span>lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit</span>
+                        <h4>Olá, bem vindo de volta!</h4>
+                        <span>Sistema floristerra versão 2</span>
                     </div>
                 </div>
             </div>
