@@ -54,6 +54,7 @@ class pagamentosController extends Controller
 
           if ($request->hasFile('boleto')) {
             $path = $request->file('boleto')->store('public/uploads');
+            // return response()->json($path);
             $caminhoArquivo = Storage::url($path);
             $filename = explode("/", $caminhoArquivo)[3];
           }else{
@@ -87,9 +88,19 @@ class pagamentosController extends Controller
     }
 
     public function update(Request $request){
-        $data = $request->only("id", "nomeconta", "vencimento", "valor", "observacao");
+        $data = $request->only("id", "nomeconta", "vencimento", "valor", "observacao", "paga", "comprovante");
         $conta = contasModel::find($data['id']);
+
+        if ($request->hasFile('comprovante')) {
+            $path = $request->file('comprovante')->store('public/uploads');
+            $caminhoArquivo = Storage::url($path);
+            $filename = explode("/", $caminhoArquivo)[3];
+            // return response()->json(explode("/", $caminhoArquivo));
+          }else{
+            $filename = null;
+          }
         if($conta){
+            $conta->comprovante = $filename;
             $contaArray = $conta->toArray();
             $contaArray = array_replace($contaArray, $data);
             $conta->update($contaArray);

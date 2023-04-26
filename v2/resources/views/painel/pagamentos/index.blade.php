@@ -178,7 +178,7 @@ Floristerra - Pagamentos
                 <h5 class="modal-title" id="exampleModalLabel">Adicionar novo Pagamento</h5>
             </div>
             <div class="modal-body">
-                <form action="{{route('pagamentos_update')}}" method="POST" id="form-edit">
+                <form action="{{route('pagamentos_update')}}" method="POST" id="form-edit" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group" hidden>
                         <label for="recipient-name" class="col-form-label">ID:</label>
@@ -200,10 +200,17 @@ Floristerra - Pagamentos
                     <div class="form-group">
                         <a class="btn btn-sm btn-primary text-light" onclick="downloadFile()" id="download-link" type="none"><i class="ti-wallet"></i>Download boleto</a>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Comprovante:</label>
-                        <input type="file" class="form-control" id="edit-comprovante">
-                    </div> -->
+                    <div class="form-group">
+                        <label for="recipient-name" id="comprovante-label" class="col-form-label">Comprovante:</label>
+                        <input type="file" name="comprovante" class="form-control" id="comprovante">
+                    </div>
+                    <label class="col-form-label mt-6">Pago:</label>
+                    <div class="form-group">
+                        <select class="form-control" name="paga" required>
+                            <option id="option"></option>
+                            <option id="secondOption"></option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Observação:</label>
                         <textarea class="form-control" name="observacao" id="edit-observacao"></textarea>
@@ -309,19 +316,45 @@ Floristerra - Pagamentos
         // Faz a chamada para o endpoint usando fetch()
         fetch(url, options)
             .then(response => response.json())
-            .then(data => [
-                document.getElementById("edit-id").value = data.id,
-                document.getElementById("edit-name").value = data.nomeconta,
-                document.getElementById("edit-vencimento").value = data.vencimento,
-                document.getElementById("fileName").value = data.boleto,
+            .then(data => {
+                document.getElementById("edit-id").value = data.id;
+                document.getElementById("edit-name").value = data.nomeconta;
+                document.getElementById("edit-vencimento").value = data.vencimento;
+                document.getElementById("fileName").value = data.boleto;
+                document.getElementById("option").value = data.paga;
+                document.getElementById("option").innerHTML = data.paga == 0 ? "Não Pago" : "Pago";
+                document.getElementById("secondOption").innerHTML = data.paga == 0 ? "Pago" : "Não Pago";
+                document.getElementById("secondOption").value = data.paga == 0 ? 1 : 0;
                 document.getElementById("edit-valor").value = data.valor.toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL'
-                }),
-                document.getElementById("edit-observacao").value = data.observacao,
-            ])
-            .catch(error => console.error(error));
+                });
+                document.getElementById("edit-observacao").value = data.observacao;
+                console.log(data.comprovante == "");
 
+                if (data.comprovante !== null && data.comprovante !== "") {
+                    document.getElementById("comprovante-label").style.display = "none";
+                    const newLink = document.createElement("a");
+                    newLink.className = "btn btn-sm btn-primary";
+                    newLink.id = "comprovante";
+                    newLink.innerHTML = "Visualizar comprovante";
+                    newLink.href = "{{ route('download', ['filename' => ':nomeArquivo']) }}".replace(':nomeArquivo', data.comprovante);
+                    newLink.target = "_blank"; // adiciona o atributo target="_blank" para abrir o link em uma nova aba
+                    const fileInput = document.getElementById("comprovante");
+                    fileInput.replaceWith(newLink);
+                } else {
+                    console.log("else")
+                    document.getElementById("comprovante-label").style.display = "block";
+                    const fileInput = document.getElementById("comprovante");
+                    const newInput = document.createElement("input");
+                    newInput.type = "file";
+                    newInput.name = "comprovante";
+                    newInput.className = "form-control";
+                    newInput.id = "comprovante";
+                    fileInput.replaceWith(newInput);
+                }
+            })
+            .catch(error => console.error(error));
         modalEditar.style.display = "block";
     }
 </script>
