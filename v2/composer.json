@@ -11,6 +11,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.1",
+        "league/flysystem-aws-s3-v3": "^3.13",
         "yoeunes/toastr": "^2.0"
     },
     "require-dev": {

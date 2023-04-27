@@ -52,14 +52,13 @@ class pagamentosController extends Controller
             return back()->withErrors($validator);
         }
 
-          if ($request->hasFile('boleto')) {
-            $path = $request->file('boleto')->store('public/uploads');
-            // return response()->json($path);
-            $caminhoArquivo = Storage::url($path);
-            $filename = explode("/", $caminhoArquivo)[3];
-          }else{
+        if ($request->hasFile('boleto')) {
+            $timestamp = \Carbon\Carbon::now()->format('YmdHis');
+            $filename = $timestamp . '_' . $request->file('boleto')->getClientOriginalName();
+            $path = Storage::disk('s3')->putFileAs('uploads', $request->file('boleto'), $filename);
+        } else {
             $filename = null;
-          }
+        }
 
         $conta = new contasModel();
         $conta->nomeconta = $data['nome'];
@@ -75,58 +74,60 @@ class pagamentosController extends Controller
     public function delete($id)
     {
         $conta = contasModel::find($id);
-        if($conta){
+        if ($conta) {
             $conta->delete();
             return redirect()->route('pagamentos')->with('warning', 'Conta deletada com sucesso!');
-        }else{
+        } else {
             return redirect()->route('pagamentos')->with('error', 'Conta não encontrada!');
         }
     }
 
-    public function search($id){
+    public function search($id)
+    {
         return contasModel::find($id);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $data = $request->only("id", "nomeconta", "vencimento", "valor", "observacao", "paga", "comprovante");
         $conta = contasModel::find($data['id']);
 
         if ($request->hasFile('comprovante')) {
-            $path = $request->file('comprovante')->store('public/uploads');
-            $caminhoArquivo = Storage::url($path);
-            $filename = explode("/", $caminhoArquivo)[3];
-            // return response()->json(explode("/", $caminhoArquivo));
-          }else{
+            $timestamp = \Carbon\Carbon::now()->format('YmdHis');
+            $filename = $timestamp . '_' . $request->file('comprovante')->getClientOriginalName();
+            $path = Storage::disk('s3')->putFileAs('uploads', $request->file('comprovante'), $filename);
+        } else {
             $filename = null;
-          }
-        if($conta){
+        }
+        if ($conta) {
             $conta->comprovante = $filename;
             $contaArray = $conta->toArray();
             $contaArray = array_replace($contaArray, $data);
             $conta->update($contaArray);
             return back()->with('success', 'Conta atualizada com sucesso!');
-        }else{
+        } else {
             return back()->with('error', 'Conta não encontrada!');
         }
     }
 
-    public function downloadFile($filename){
-        $path = storage_path('app/public/uploads/' . $filename);
-        if (!File::exists($path)) {
+    public function downloadFile($filename)
+    {
+        try {
+            return Storage::disk('s3')->response('uploads/' . $filename);
+        } catch (\Throwable $th) {
             return redirect()->route('pagamentos')->with('error', 'Não há boleto anexado para esta conta.');
         }
-        return response()->download($path);
     }
 
-    public function accountFilter(Request $request){
-        if($request->conta){
+    public function accountFilter(Request $request)
+    {
+        if ($request->conta) {
             $contas = DB::table('contas')
-            ->where('nomeconta', 'like', '%'.$request->conta.'%')->paginate(20);
+                ->where('nomeconta', 'like', '%' . $request->conta . '%')->paginate(20);
 
             return view('painel.pagamentos.busca', [
                 'contas' => $contas,
             ]);
         }
     }
-
 }

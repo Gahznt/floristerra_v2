@@ -68,7 +68,7 @@ Floristerra - Pagamentos
         <form action="{{route('accountFilter')}}" method="post">
             @csrf
             <div class="input-group">
-                <input type="text" name="conta" class="form-control mr-1" placeholder="nome da conta">
+                <input type="text" name="conta" class="form-control mr-1" required placeholder="nome da conta">
                 <div class="input-group-append">
                     <button class="btn btn-grd-primary btn-sm ml-1">Buscar</button>
                 </div>
