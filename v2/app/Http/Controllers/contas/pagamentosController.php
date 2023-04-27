@@ -104,7 +104,7 @@ class pagamentosController extends Controller
             $contaArray = $conta->toArray();
             $contaArray = array_replace($contaArray, $data);
             $conta->update($contaArray);
-            return back()->with('success', 'Conta atualizada com sucesso!');
+            return redirect()->route('pagamentos')->with('success', 'Conta atualizada com sucesso!');
         } else {
             return back()->with('error', 'Conta não encontrada!');
         }
