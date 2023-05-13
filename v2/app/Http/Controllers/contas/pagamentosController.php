@@ -23,7 +23,7 @@ class pagamentosController extends Controller
             ->where('vencimento', '<=', '2022-12-31')
             ->orderBy('paga', 'asc')
             ->orderBy('vencimento', 'asc')
-            ->paginate(20);
+            ->paginate(35);
         $pendentes = contasModel::where('paga', 0)
             ->where('vencimento', '>=', '2022-01-01')
             ->where('vencimento', '<=', '2022-12-31')
@@ -45,7 +45,7 @@ class pagamentosController extends Controller
         $contas = contasModel::where('vencimento', '>=', '2023-01-01')
             ->orderBy('paga', 'asc')
             ->orderBy('vencimento', 'asc')
-            ->paginate(20);
+            ->paginate(35);
         $pendentes = contasModel::where('paga', 0)
             ->where('vencimento', '>=', '2023-01-01')
             ->sum('valor');
