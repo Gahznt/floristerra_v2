@@ -65,7 +65,7 @@ Floristerra - Pagamentos
     </div>
 
     <div class="input-group-append">
-        <a class="btn btn-grd-primary btn-sm ml-1 ml-4" href="{{route('pagamentos')}}">Voltar</a>
+        <a class="btn btn-grd-primary btn-sm ml-1 ml-4" href="{{route('dashboard')}}">Voltar</a>
     </div>
 
     <div class="card-header">
@@ -122,7 +122,7 @@ Floristerra - Pagamentos
         </div>
     </div>
 </div>
-{{ $contas->links('pagination::simple-bootstrap-4') }}
+
 <div class="modal fade show" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none; padding-right: 17px; background-color: rgba(0,0,0,0.4); /* Black w/ opacity */">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

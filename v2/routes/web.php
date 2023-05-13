@@ -29,9 +29,12 @@ Route::post('/loginpost', [loginController::class, 'authenticate'])->name('login
 Route::middleware(['auth'])->group(function () {
     Route::get('/pagina-inicial', [homeController::class, 'index'])->name('dashboard');
 
-    Route::get('/pagamentos', [pagamentosController:: class, 'index'])->name('pagamentos');
+    Route::get('/pagamentos22', [pagamentosController:: class, 'index22'])->name('pagamentos22');
+    Route::get('/pagamentos23', [pagamentosController:: class, 'index23'])->name('pagamentos23');
+
     Route::post('/pagamentos', [pagamentosController::class, 'store'])->name('pagamentos_store');
     Route::post('/pagamentosUpdate', [pagamentosController::class, 'update'])->name('pagamentos_update');
+
     Route::get('/remover_pagamento/{id}', [pagamentosController::class, 'delete'])->name('remover_pagamento');
     Route::get('/pagamentos/{id}', [pagamentosController::class, 'search'])->name('search');
     Route::post('/filterPagamentos', [pagamentosController::class, 'accountFilter'])->name('accountFilter');

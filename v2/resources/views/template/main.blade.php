@@ -159,12 +159,28 @@
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Pagamentos &amp;
                                 Recebimentos</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li>
-                                    <a href="{{route('pagamentos')}}">
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-wallet"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pagamentos</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
+                                    <ul class="pcoded-submenu">
+                                        <li>
+                                            <a href="{{route('pagamentos22')}}">
+                                                <span class="pcoded-micon"><i class="ti-wallet"></i><b>FC</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pagamentos 2022</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('pagamentos23')}}">
+                                                <span class="pcoded-micon"><i class="ti-wallet"></i><b>FC</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pagamentos 2023</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
                                     <a href="{{route('recebimentos')}}">
@@ -174,6 +190,8 @@
                                     </a>
                                 </li>
                             </ul>
+
+
                             <!-- <div class="pcoded-navigatio-lavel">Diário de Obras</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">

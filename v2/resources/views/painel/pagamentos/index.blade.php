@@ -63,12 +63,19 @@ Floristerra - Pagamentos
             </div>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-7">
         <label class="col-form-label">Filtrar conta</label>
         <form action="{{route('accountFilter')}}" method="post">
             @csrf
             <div class="input-group">
-                <input type="text" name="conta" class="form-control mr-1" required placeholder="nome da conta">
+                <input type="text" name="conta" class="form-control mr-1" placeholder="nome da conta">
+                <input type="date" name="dateinit" class="form-control mr-1">
+                <input type="date" name="dateend" class="form-control mr-1">
+                <select class="form-control" name="status">
+                    <option value="">Status</option>
+                    <option value="1">Pago</option>
+                    <option value="0">Não pago</option>
+                </select>
                 <div class="input-group-append">
                     <button class="btn btn-grd-primary btn-sm ml-1">Buscar</button>
                 </div>
@@ -88,6 +95,7 @@ Floristerra - Pagamentos
             </ul>
         </div>
     </div>
+
     <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table">
@@ -172,7 +180,7 @@ Floristerra - Pagamentos
 </div>
 
 <div class="modal fade show" id="modalEditar" tabindex="-1" role="dialog" style="display: none; padding-right: 17px; background-color: rgba(0,0,0,0.4); /* Black w/ opacity */">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Adicionar novo Pagamento</h5>
@@ -217,7 +225,6 @@ Floristerra - Pagamentos
                     </div>
             </div>
             <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-primary btn-skew">Salvar</button> -->
                 <button type="submit" class="btn btn-primary btn-skew">Salvar</button>
                 <button type="button" class="btn btn-danger btn-skew" id="closeEdit" data-dismiss="modal">Fechar</button>
             </div>

@@ -17,11 +17,41 @@ class pagamentosController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index22()
     {
-        $contas = contasModel::orderBy('paga', 'asc')->orderBy('vencimento', 'asc')->paginate(20);
-        $pendentes = contasModel::where('paga', 0)->sum('valor');
-        $pagas = contasModel::where('paga', 1)->sum('valor');
+        $contas = contasModel::where('vencimento', '>=', '2022-01-01')
+            ->where('vencimento', '<=', '2022-12-31')
+            ->orderBy('paga', 'asc')
+            ->orderBy('vencimento', 'asc')
+            ->paginate(20);
+        $pendentes = contasModel::where('paga', 0)
+            ->where('vencimento', '>=', '2022-01-01')
+            ->where('vencimento', '<=', '2022-12-31')
+            ->sum('valor');
+        $pagas = contasModel::where('paga', 1)
+            ->where('vencimento', '>=', '2022-01-01')
+            ->where('vencimento', '<=', '2022-12-31')
+            ->sum('valor');
+
+        return view('painel.pagamentos.index', [
+            'contas' => $contas,
+            'pendentes' => $pendentes,
+            'pagas' => $pagas
+        ]);
+    }
+
+    public function index23()
+    {
+        $contas = contasModel::where('vencimento', '>=', '2023-01-01')
+            ->orderBy('paga', 'asc')
+            ->orderBy('vencimento', 'asc')
+            ->paginate(20);
+        $pendentes = contasModel::where('paga', 0)
+            ->where('vencimento', '>=', '2023-01-01')
+            ->sum('valor');
+        $pagas = contasModel::where('paga', 1)
+            ->where('vencimento', '>=', '2023-01-01')
+            ->sum('valor');
 
         return view('painel.pagamentos.index', [
             'contas' => $contas,
@@ -121,13 +151,31 @@ class pagamentosController extends Controller
 
     public function accountFilter(Request $request)
     {
-        if ($request->conta) {
-            $contas = DB::table('contas')
-                ->where('nomeconta', 'like', '%' . $request->conta . '%')->paginate(20);
+        $dateInit = $request->dateinit ? $request->dateinit : null;
+        $dateEnd = $request->dateend ? $request->dateend : null;
 
-            return view('painel.pagamentos.busca', [
-                'contas' => $contas,
-            ]);
+        $query = DB::table('contas');
+
+        if ($request->conta) {
+            $query->where('nomeconta', 'like', '%' . $request->conta . '%');
         }
+
+        if($request->status){
+            $query->where('paga', $request->status);
+        }
+
+        if ($dateInit != null && $dateEnd != null) {
+            $query->whereBetween('vencimento', [$dateInit, $dateEnd]);
+        } elseif ($dateInit != null) {
+            $query->where('vencimento', '>=', $dateInit);
+        } elseif ($dateEnd != null) {
+            $query->where('vencimento', '<=', $dateEnd);
+        }
+
+        $contas = $query->get();
+
+        return view('painel.pagamentos.busca', [
+            'contas' => $contas,
+        ]);
     }
 }
