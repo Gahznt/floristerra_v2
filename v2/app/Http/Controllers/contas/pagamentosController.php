@@ -106,9 +106,9 @@ class pagamentosController extends Controller
         $conta = contasModel::find($id);
         if ($conta) {
             $conta->delete();
-            return redirect()->route('pagamentos')->with('warning', 'Conta deletada com sucesso!');
+            return redirect()->route('pagamentos23')->with('warning', 'Conta deletada com sucesso!');
         } else {
-            return redirect()->route('pagamentos')->with('error', 'Conta não encontrada!');
+            return redirect()->route('pagamentos23')->with('error', 'Conta não encontrada!');
         }
     }
 
@@ -134,7 +134,7 @@ class pagamentosController extends Controller
             $contaArray = $conta->toArray();
             $contaArray = array_replace($contaArray, $data);
             $conta->update($contaArray);
-            return redirect()->route('pagamentos')->with('success', 'Conta atualizada com sucesso!');
+            return redirect()->route('pagamentos23')->with('success', 'Conta atualizada com sucesso!');
         } else {
             return back()->with('error', 'Conta não encontrada!');
         }
@@ -145,7 +145,7 @@ class pagamentosController extends Controller
         try {
             return Storage::disk('s3')->response('uploads/' . $filename);
         } catch (\Throwable $th) {
-            return redirect()->route('pagamentos')->with('error', 'Não há boleto anexado para esta conta.');
+            return redirect()->route('pagamentos23')->with('error', 'Não há boleto anexado para esta conta.');
         }
     }
 
