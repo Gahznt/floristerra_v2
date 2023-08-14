@@ -117,6 +117,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        
+        'custom_db_log' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/custom_db.log'), // Caminho para o arquivo de log personalizado
+            'level' => 'info',
+        ],
     ],
 
 ];

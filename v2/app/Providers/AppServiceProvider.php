@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\contasModel;
 use Illuminate\Support\ServiceProvider;
+use App\Observers\DatabaseLogObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        contasModel::observe(DatabaseLogObserver::class);
     }
 }
