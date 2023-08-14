@@ -83,9 +83,14 @@ class pagamentosController extends Controller
         }
 
         if ($request->hasFile('boleto')) {
-            $timestamp = \Carbon\Carbon::now()->format('YmdHis');
-            $filename = $timestamp . '_' . $request->file('boleto')->getClientOriginalName();
-            $path = Storage::disk('s3')->putFileAs('uploads', $request->file('boleto'), $filename);
+            try {
+                $timestamp = \Carbon\Carbon::now()->format('YmdHis');
+                $filename = $timestamp . '_' . $request->file('boleto')->getClientOriginalName();
+                Storage::disk('s3')->putFileAs('uploads', $request->file('boleto'), $filename);
+            } catch (\Throwable $th) {
+                toastr()->error("Erro ao tentar salvar seu arquivo, por gentileza tente novamente", 'Ops!');
+            }
+
         } else {
             $filename = null;
         }
