@@ -105,7 +105,7 @@
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
-                                        <a href="#">
+                                        <a href="{{route('profile')}}">
                                             <i class="ti-user"></i> Perfil
                                         </a>
                                     </li>
@@ -140,7 +140,7 @@
                                 <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
-                                            <a href="#"><i class="ti-user"></i>Meu perfil</a>
+                                            <a href="{{route('profile')}}"><i class="ti-user"></i>Meu perfil</a>
                                             <a href="#"><i class="ti-layout-sidebar-left"></i>Sair</a>
                                         </li>
                                     </ul>

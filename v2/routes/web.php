@@ -29,6 +29,9 @@ Route::post('/loginpost', [loginController::class, 'authenticate'])->name('login
 Route::middleware(['auth'])->group(function () {
     Route::get('/pagina-inicial', [homeController::class, 'index'])->name('dashboard');
 
+    Route::get('/meu-perfil', [loginController::class, 'profile'])->name('profile');
+    Route::post('/meu-perfil', [loginController::class, 'changePassword'])->name('profilePost');
+
     Route::get('/pagamentos22', [pagamentosController:: class, 'index22'])->name('pagamentos22');
     Route::get('/pagamentos23', [pagamentosController:: class, 'index23'])->name('pagamentos23');
 
