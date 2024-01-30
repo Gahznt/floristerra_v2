@@ -21,5 +21,11 @@ class CreateAdminUserSeed extends Seeder
             'email' => 'adm@floristerra.com',
             'password' => Hash::make('121222194'),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Gabriel',
+            'email' => 'zanatag.gz@gmail.com',
+            'password' => Hash::make('121222194'),
+        ]);
     }
 }
