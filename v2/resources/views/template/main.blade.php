@@ -192,7 +192,7 @@
                             </ul>
 
 
-                            <!-- <div class="pcoded-navigatio-lavel">Diário de Obras</div>
+                            <div class="pcoded-navigatio-lavel">Diário de Obras</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="#">
@@ -203,14 +203,14 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="{{route('diario')}}">
+                                            <a href="{{route('emitir-diario')}}">
                                                 <span class="pcoded-micon"><i class="-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Emitir Diário</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class=" ">
-                                            <a href="#">
+                                            <a href="{{route('diario')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Consultar
                                                     Diários</span>
@@ -219,7 +219,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                            </ul> -->
+                            </ul>
                             <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Configurações</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>

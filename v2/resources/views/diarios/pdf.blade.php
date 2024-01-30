@@ -21,7 +21,7 @@
                     <b> Relatório n° </b>
                 </div>
                 <div class="row border" style="background-color: rgb(163, 163, 163)" align="center">
-                    <b> Contrato </b>
+                    <b> Contratado </b>
                 </div>
                 <div class="row border" style="background-color: rgb(163, 163, 163)" align="center">
                     <b> Prazo contratual </b>
@@ -29,13 +29,13 @@
             </div>
             <div class="col col-4 border border">
                 <div class="row border">
-                    <label align="center"># 12312<label>
+                    <label align="center"># {{$diario->id}}<label>
                 </div>
                 <div class="row border" align="center">
-                    <label align="center">-<label>
+                    <label align="center">{{$diario->contratado}}<label>
                 </div>
                 <div class="row border" align="center">
-                    <label align="center">20 dias<label>
+                    <label align="center">{{$diario->prazo_contratual}} dias<label>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <b> Prazo decorrido </b>
             </div>
             <div class="col col-4 border" align="center">
-                <label align="center">10 dias<label>
+                <label align="center">{{$diario->prazo_decorrido}} dias<label>
             </div>
         </div>
         <div class="row">
@@ -55,16 +55,18 @@
                 <b>Obra</b>
             </div>
             <div class="col col-2 border">
-                ACA
+                {{$diario->obra}}
             </div>
             <div class="col col-2 border">
                 <!--2 of 3 -->
             </div>
             <div class="col col-2 border" style="background-color: rgb(163, 163, 163)" align="center">
-                <b> Prazo a vencer </b>
+                <!-- <b> Prazo a vencer </b> -->
+                <b> - </b>
             </div>
             <div class="col col-4 border" align="center">
-                <label align="center">10 dias<label>
+                <!-- <label align="center">10 dias<label> -->
+                <b> - </b>
             </div>
         </div>
         <div class="row">
@@ -72,7 +74,7 @@
                 <b>Local</b>
             </div>
             <div class="col col-2 border">
-                Rodovia Fernão Dias
+                {{$diario->local}}
             </div>
             <div class="col col-2 border">
                 <!--2 of 3 -->
@@ -81,7 +83,7 @@
                 <b> Data do Relatório </b>
             </div>
             <div class="col col-4 border" align="center">
-                <label align="center">25/04/2023<label>
+                <label align="center">{{date('d/m/Y', strtotime($diario->created_at))}}<label>
             </div>
         </div>
         <div class="row">
@@ -89,7 +91,7 @@
                 <b>Contratante</b>
             </div>
             <div class="col col-2 border">
-                Antonio Carlos
+                {{$diario->contratante}}
             </div>
             <div class="col col-2 border">
                 <!--2 of 3 -->
@@ -97,8 +99,36 @@
             <div class="col col-2 border" style="background-color: rgb(163, 163, 163)" align="center">
                 <b> Dia da Semana </b>
             </div>
+            @php
+            setlocale(LC_TIME, 'pt_BR.utf-8');
+            $diaSemana = strftime('%A', strtotime($diario->created_at));
+
+            switch($diaSemana) {
+            case 'Monday':
+            $diaSemana = 'Segunda-feira';
+            break;
+            case 'Tuesday':
+            $diaSemana = 'Terça-feira';
+            break;
+            case 'Wednesday':
+            $diaSemana = 'Quarta-feira';
+            break;
+            case 'Thursday':
+            $diaSemana = 'Quinta-feira';
+            break;
+            case 'Friday':
+            $diaSemana = 'Sexta-feira';
+            break;
+            case 'Saturday':
+            $diaSemana = 'Sábado';
+            break;
+            case 'Sunday':
+            $diaSemana = 'Domingo';
+            break;
+            }
+            @endphp
             <div class="col col-4 border" align="center">
-                <label align="center">Segunda-Feira<label>
+                <label align="center">{{ $diaSemana }}<label>
             </div>
         </div>
 
@@ -112,7 +142,7 @@
                     <b>Tempo</b>
                 </div>
                 <div class="col col-4 border" style="background-color: rgb(163, 163, 163)" align="center">
-                    <b>Condição</b>
+                    <b>Práticavel?</b>
                 </div>
             </div>
             <div class="row">
@@ -120,10 +150,10 @@
                     Manhã
                 </div>
                 <div class="col col-4 border" align="center">
-                    Claro
+                    {{$diario->condicao_climatica_manha}}
                 </div>
                 <div class="col col-4 border" align="center">
-                    Praticável
+                    {{$diario->praticavel_manha == true ? "Sim" : "Não"}}
                 </div>
             </div>
             <div class="row">
@@ -131,10 +161,10 @@
                     Tarde
                 </div>
                 <div class="col col-4 border" align="center">
-                    Claro
+                    {{$diario->condicao_climatica_tarde}}
                 </div>
                 <div class="col col-4 border" align="center">
-                    Praticável
+                    {{$diario->praticavel_tarde == true ? "Sim" : "Não"}}
                 </div>
             </div>
         </div>
@@ -147,7 +177,7 @@
             </div>
             <div class="row">
                 <div class="col col-12 border" align="center">
-                    Fulano 1
+                    {{$diario->qtd_funcionarios}}
                 </div>
             </div>
         </div>
@@ -160,7 +190,7 @@
             </div>
             <div class="row">
                 <div class="col col-12 border" align="center">
-                    Máquina 1
+                    {{$diario->equipamentos}}
                 </div>
             </div>
         </div>
@@ -173,7 +203,7 @@
             </div>
             <div class="row">
                 <div class="col col-12 border py-5">
-                    registro das atividades aqui
+                    {{$diario->detalhes_atividades}}
                 </div>
             </div>
         </div>
@@ -184,26 +214,14 @@
                     <b>Galeria de fotos</b>
                 </div>
             </div>
+
+            @foreach($diario->diariosUploads as $photo)
             <div class="row">
                 <div class="col-md-12 border d-flex justify-content-center">
-                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
+                    <img src="{{$photo['url']}}" width="500" height="500">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 border d-flex justify-content-center">
-                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 border d-flex justify-content-center">
-                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 border d-flex justify-content-center">
-                    <img src="https://files.tecnoblog.net/wp-content/uploads/2022/04/google_capa-3.jpg" width="500" height="500">
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </body>
