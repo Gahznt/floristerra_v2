@@ -28,6 +28,7 @@ Floristerra - Diário de Obra
                         <th>Data do relatório</th>
                         <th>Contratante</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,7 @@ Floristerra - Diário de Obra
                         <td>{{date('d/m/Y', strtotime($diario->created_at))}}</td>
                         <td>{{$diario->contratante}}</td>
                         <td><a href="{{ route('findDiario', ['id' => $diario->id]) }}" class="btn btn-grd-info btn-skew btn-sm" target="_blank">Abrir</a></td>
+                        <td><a href="{{ route('deleteDiario', ['id' => $diario->id]) }}" class="btn btn-grd-danger btn-skew btn-sm" onclick="return confirm('Deseja deletar este registro? Está ação não poderá ser desfeita')">Apagar</a></td>
                     </tr>
                     @endforeach
 

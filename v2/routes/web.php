@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('diario', [diarioController::class, 'list'])->name('diario');
     Route::post('/diario', [diarioController::class, 'create'])->name('diarioPost');
     Route::get('/diario/{id}', [diarioController::class, 'find'])->name('findDiario');
+    Route::get('/delete/diario/{id}', [diarioController::class, 'delete'])->name('deleteDiario');
 
     Route::get('pdf', function(){
         return view('diarios.pdf');

@@ -65,6 +65,22 @@ class diarioController extends Controller
         ]);
     }
 
+    public function delete($id){
+        $diario = Diario::find($id);
+
+        if($diario){
+            $uploads = DiarioUploads::where('diario_id', $id)->get();
+            if($uploads){
+                foreach($uploads as $upload){
+                    $upload->delete();
+                }
+            }
+            $diario->delete();
+        }
+
+        return back()->with('success', 'Registro apagado com sucesso');
+    }
+
     public function list(){
         $diarios = Diario::orderBy('created_at', 'desc')->with('diariosUploads')->paginate(10);
 
