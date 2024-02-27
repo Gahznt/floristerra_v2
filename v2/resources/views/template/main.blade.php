@@ -166,17 +166,17 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li>
+                                        <!-- <li>
                                             <a href="{{route('pagamentos22')}}">
                                                 <span class="pcoded-micon"><i class="ti-wallet"></i><b>FC</b></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pagamentos 2022</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                             <a href="{{route('pagamentos23')}}">
                                                 <span class="pcoded-micon"><i class="ti-wallet"></i><b>FC</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pagamentos 2023</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pagamentos</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
