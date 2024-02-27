@@ -75,7 +75,7 @@
                         <a class="mobile-search morphsearch-search" href="#">
                             <i class="ti-search"></i>
                         </a>
-                        <a href="index.html">
+                        <a href="{{route('dashboard')}}">
                             <img class="img-fluid" src="{{ asset('assets/template/images/logo.png') }}" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options">
