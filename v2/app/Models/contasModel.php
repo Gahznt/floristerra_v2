@@ -13,11 +13,14 @@ class contasModel extends Model
     protected $table = 'contas';
 
     protected $fillable = [
+        'id',
         'nomeconta',
         'vencimento',
         'valor',
         'boleto',
         'paga',
-        'observacao'
+        'observacao',
+        'created_at',
+        'updated_at'
     ];
 }

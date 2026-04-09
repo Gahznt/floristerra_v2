@@ -42,7 +42,7 @@ class pagamentosController extends Controller
 
     public function index23()
     {
-        $contas = contasModel::where('vencimento', '>=', '2023-01-01')
+        $contas = contasModel::where('vencimento', '>=', '2026-01-01')
             ->orderBy('paga', 'asc')
             ->orderBy('vencimento', 'asc')
             ->paginate(35);

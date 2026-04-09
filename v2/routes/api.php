@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersNatanController;
+use App\Http\Controllers\ImportContasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +15,5 @@ use App\Http\Controllers\UsersNatanController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/import-contas', [ImportContasController::class, 'import']);
