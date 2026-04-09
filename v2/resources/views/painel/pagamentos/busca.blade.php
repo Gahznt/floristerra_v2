@@ -65,7 +65,7 @@ Floristerra - Pagamentos
     </div>
 
     <div class="input-group-append">
-        <a class="btn btn-grd-primary btn-sm ml-1 ml-4" href="{{route('dashboard')}}">Voltar</a>
+        <a class="btn btn-grd-primary btn-sm ml-1 ml-4" href="{{route('pagamentos23')}}">Voltar</a>
     </div>
 
     <div class="card-header">

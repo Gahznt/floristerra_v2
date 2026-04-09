@@ -42,45 +42,76 @@ Floristerra - Pagamentos
                     <h4></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
-                            <i class="text-c-yellow f-16 icofont icofont-money m-r-10"></i>Contas que vencem hoje!
+                            <i class="text-c-yellow f-16 icofont icofont-money m-r-10"></i>
+                            @if(isset($pendentesCount) && $pendentesCount > 0)
+                                R$ {{ number_format($pendentes, 2, ',', '.') }} ({{ $pendentesCount }})
+                            @else
+                                Nenhuma conta pendente
+                            @endif
                         </span>
                     </div>
                 </div>
             </div>
         </div>
+        @if(isset($noprazoCount))
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="ti-face-smile bg-c-green card1-icon"></i>
-                    <span class="text-c-green f-w-600">Contas Pagas</span>
+                    <i class="ti-check bg-c-blue card1-icon"></i>
+                    <span class="text-c-blue f-w-600">Contas no prazo</span>
                     <h4></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
-                            <i class="text-c-green f-16 icofont icofont-money m-r-10"></i>Contas pagas
+                            <i class="text-c-blue f-16 icofont icofont-money m-r-10"></i>
+                            @if($noprazoCount > 0)
+                                R$ {{ number_format($noprazo, 2, ',', '.') }} ({{ $noprazoCount }})
+                            @else
+                                Nenhuma conta no prazo
+                            @endif
                         </span>
                     </div>
                 </div>
             </div>
         </div>
+        @endif
     </div>
-    <div class="col-md-7">
-        <label class="col-form-label">Filtrar conta</label>
-        <form action="{{route('accountFilter')}}" method="post">
-            @csrf
-            <div class="input-group">
-                <input type="text" name="conta" class="form-control mr-1" placeholder="nome da conta">
-                <input type="date" name="dateinit" class="form-control mr-1">
-                <input type="date" name="dateend" class="form-control mr-1">
-                <select class="form-control" name="status">
-                    <option value="">Status</option>
-                    <option value="1">Pago</option>
-                    <option value="0">Não pago</option>
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-grd-primary btn-sm ml-1">Buscar</button>
+
+    <div class="col-md-12 mb-4">
+        <div class="card p-3">
+            <h6 class="mb-3 font-weight-bold">Filtrar pagamentos</h6>
+            <form action="{{route('accountFilter')}}" method="post">
+                @csrf
+                <div class="form-row align-items-end">
+                    <div class="col-md-4 mb-2">
+                        <label class="font-weight-medium">Descrição</label>
+                        <input type="text" name="conta" class="form-control" placeholder="Nome ou observação da conta">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label class="font-weight-medium">Vencimento inicial</label>
+                        <input type="date" name="dateinit" class="form-control">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label class="font-weight-medium">Vencimento final</label>
+                        <input type="date" name="dateend" class="form-control">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label class="font-weight-medium">Situação</label>
+                        <select class="form-control" name="status">
+                            <option value="">Todas</option>
+                            <option value="pago">Pago</option>
+                            <option value="nao_pago">Não pago</option>
+                            <option value="em_atraso">Em atraso</option>
+                            <option value="no_prazo">No prazo</option>
+                            <option value="vence_hoje">Vence hoje</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-2 text-right">
+                        <button class="btn btn-grd-primary btn-sm mr-1">Buscar</button>
+                        <a href="{{route('pagamentos23')}}" class="btn btn-outline-secondary btn-sm">Limpar</a>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
 

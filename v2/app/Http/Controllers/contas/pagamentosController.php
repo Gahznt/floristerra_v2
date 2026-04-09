@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class pagamentosController extends Controller
 {
@@ -28,15 +29,15 @@ class pagamentosController extends Controller
             ->where('vencimento', '>=', '2022-01-01')
             ->where('vencimento', '<=', '2022-12-31')
             ->sum('valor');
-        $pagas = contasModel::where('paga', 1)
+        $pendentesCount = contasModel::where('paga', 0)
             ->where('vencimento', '>=', '2022-01-01')
             ->where('vencimento', '<=', '2022-12-31')
-            ->sum('valor');
+            ->count();
 
         return view('painel.pagamentos.index', [
             'contas' => $contas,
             'pendentes' => $pendentes,
-            'pagas' => $pagas
+            'pendentesCount' => $pendentesCount
         ]);
     }
 
@@ -46,17 +47,27 @@ class pagamentosController extends Controller
             ->orderBy('paga', 'asc')
             ->orderBy('vencimento', 'asc')
             ->paginate(35);
+
         $pendentes = contasModel::where('paga', 0)
-            ->where('vencimento', '>=', '2023-01-01')
+            ->where('vencimento', '<', Carbon::today())
             ->sum('valor');
-        $pagas = contasModel::where('paga', 1)
-            ->where('vencimento', '>=', '2023-01-01')
+        $pendentesCount = contasModel::where('paga', 0)
+            ->where('vencimento', '<', Carbon::today())
+            ->count();
+
+        $noprazo = contasModel::where('paga', 0)
+            ->where('vencimento', '>=', Carbon::today())
             ->sum('valor');
+        $noprazoCount = contasModel::where('paga', 0)
+            ->where('vencimento', '>=', Carbon::today())
+            ->count();
 
         return view('painel.pagamentos.index', [
             'contas' => $contas,
             'pendentes' => $pendentes,
-            'pagas' => $pagas
+            'pendentesCount' => $pendentesCount,
+            'noprazo' => $noprazo,
+            'noprazoCount' => $noprazoCount,
         ]);
     }
 
@@ -156,8 +167,8 @@ class pagamentosController extends Controller
 
     public function accountFilter(Request $request)
     {
-        $dateInit = $request->dateinit ? $request->dateinit : null;
-        $dateEnd = $request->dateend ? $request->dateend : null;
+        $dateInit = $request->dateinit ?: null;
+        $dateEnd = $request->dateend ?: null;
 
         $query = DB::table('contas');
 
@@ -165,19 +176,42 @@ class pagamentosController extends Controller
             $query->where('nomeconta', 'like', '%' . $request->conta . '%');
         }
 
-        if($request->status){
-            $query->where('paga', $request->status);
+        if ($request->status) {
+            switch ($request->status) {
+                case 'pago':
+                    $query->where('paga', 1);
+                    break;
+                case 'nao_pago':
+                    $query->where('paga', 0);
+                    break;
+                case 'em_atraso':
+                    $query->where('paga', 0)->where('vencimento', '<', Carbon::today());
+                    break;
+                case 'no_prazo':
+                    $query->where('paga', 0)->where('vencimento', '>', Carbon::today());
+                    break;
+                case 'vence_hoje':
+                    $query->where('paga', 0)->where('vencimento', Carbon::today());
+                    break;
+                default:
+                    if ($request->status === '1' || $request->status === 1) {
+                        $query->where('paga', 1);
+                    } elseif ($request->status === '0' || $request->status === 0) {
+                        $query->where('paga', 0);
+                    }
+                    break;
+            }
         }
 
-        if ($dateInit != null && $dateEnd != null) {
+        if ($dateInit && $dateEnd) {
             $query->whereBetween('vencimento', [$dateInit, $dateEnd]);
-        } elseif ($dateInit != null) {
+        } elseif ($dateInit) {
             $query->where('vencimento', '>=', $dateInit);
-        } elseif ($dateEnd != null) {
+        } elseif ($dateEnd) {
             $query->where('vencimento', '<=', $dateEnd);
         }
 
-        $contas = $query->get();
+        $contas = $query->orderBy('paga', 'asc')->orderBy('vencimento', 'asc')->get();
 
         return view('painel.pagamentos.busca', [
             'contas' => $contas,
