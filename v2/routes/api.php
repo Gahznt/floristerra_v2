@@ -15,5 +15,3 @@ use App\Http\Controllers\ImportContasController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::post('/import-contas', [ImportContasController::class, 'import']);
